@@ -9,6 +9,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -37,8 +38,10 @@ fun GradScreen(modifier: Modifier = Modifier) {
     Text(
         text = stringResource(R.string.grad_announcement),
         textAlign = TextAlign.Center,
-//        fontWeight = FontWeight.SemiBold,
-//        fontSize = 50.sp,
+        fontWeight = FontWeight.Bold,
+        fontSize = 50.sp,
+        lineHeight = 50.sp,
+        color = Color.Red,
         modifier = modifier
     )
 }
