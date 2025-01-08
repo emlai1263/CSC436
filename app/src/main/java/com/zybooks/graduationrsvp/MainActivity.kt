@@ -3,6 +3,7 @@ package com.zybooks.graduationrsvp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -10,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -43,6 +45,11 @@ fun GradScreen(modifier: Modifier = Modifier) {
         lineHeight = 50.sp,
         color = Color.Red,
         modifier = modifier
+    )
+    Image(
+        painter = painterResource(R.drawable.grad_cap),
+        contentDescription = "Graduation cap",
+        alpha = 0.3f
     )
 }
 
