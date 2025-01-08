@@ -43,7 +43,7 @@ fun GradScreen(modifier: Modifier = Modifier) {
         fontWeight = FontWeight.Bold,
         fontSize = 50.sp,
         lineHeight = 50.sp,
-        color = Color.Red,
+        color = Color.Blue, // I don't really like how the red looks
         modifier = modifier
     )
     Image(
