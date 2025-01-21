@@ -81,7 +81,7 @@ fun PizzaPartyScreen(modifier: Modifier = Modifier) {
         )
         Button(
             onClick = {
-                // Not implemented yet
+                totalPizzas = calculateNumPizzas(numPeopleInput.toInt(), hungerLevel)
             },
             modifier = modifier.fillMaxWidth()
         ) {
@@ -94,11 +94,9 @@ fun PizzaPartyScreen(modifier: Modifier = Modifier) {
 fun NumberField(
     labelText: String,
     textInput: String,
-    modifier: Modifier = Modifier,
-    onValueChange: (String) -> Unit
+    onValueChange: (String) -> Unit,
+    modifier: Modifier = Modifier
 ) {
-    var textInput by remember { mutableStateOf("") }
-
     TextField(
         value = textInput,
         onValueChange = onValueChange,
