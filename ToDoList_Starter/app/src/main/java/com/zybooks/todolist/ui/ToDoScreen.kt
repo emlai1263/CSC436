@@ -70,7 +70,9 @@ fun TaskList(
          items = taskList,
          key = { task -> task.id }
       ) { task ->
-         val dismissState = rememberDismissState()
+         val dismissState = rememberDismissState(
+            // TODO: Add actions for item dismissal
+         )
 
          SwipeToDismiss(
             state = dismissState,
