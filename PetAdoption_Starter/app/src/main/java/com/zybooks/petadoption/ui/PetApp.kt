@@ -27,16 +27,63 @@ import androidx.compose.material3.Button
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.zybooks.petadoption.data.PetDataSource
 import com.zybooks.petadoption.data.PetGender
 import com.zybooks.petadoption.ui.theme.PetAdoptionTheme
+import kotlinx.serialization.Serializable
+
+sealed class Routes {
+   @kotlinx.serialization.Serializable
+   data object List
+
+   @kotlinx.serialization.Serializable
+   data object Detail
+
+   @Serializable
+   data object Adopt
+}
 
 @Composable
 fun PetApp(
-   modifier: Modifier = Modifier,
    petViewModel: PetViewModel = viewModel()
 ) {
-   Text("To be implemented...")
+   val navController = rememberNavController()
+
+   NavHost(
+      navController = navController,
+      startDestination = Routes.List
+   ) {
+      composable<Routes.List> {
+         ListScreen(
+            petList = petViewModel.petList,
+            onImageClick = { pet ->
+               petViewModel.selectedPet = pet
+               navController.navigate(Routes.Detail)
+            }
+         )
+      }
+      composable<Routes.Detail> {
+         DetailScreen(
+            pet = petViewModel.selectedPet,
+            onAdoptClick = {
+               navController.navigate(Routes.Adopt)
+            },
+         )
+      }
+      composable<Routes.Adopt> {
+         AdoptScreen(
+            pet = petViewModel.selectedPet,
+         )
+      }
+   }
+}
+
+@Composable
+fun AdoptScreen(pet: Pet) {
+
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
