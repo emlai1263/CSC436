@@ -8,6 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.zybooks.petadoption.ui.PetApp
+import com.zybooks.petadoption.ui.PreviewDetailScreen
 import com.zybooks.petadoption.ui.PreviewListScreen
 import com.zybooks.petadoption.ui.theme.PetAdoptionTheme
 
@@ -21,7 +22,8 @@ class MainActivity : ComponentActivity() {
                color = MaterialTheme.colorScheme.background
             ) {
 //               PetApp()
-               PreviewListScreen()
+//               PreviewListScreen()
+               PreviewDetailScreen()
             }
          }
       }
