@@ -19,6 +19,9 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.zybooks.petadoption.data.Pet
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.ui.tooling.preview.Preview
+import com.zybooks.petadoption.data.PetDataSource
+import com.zybooks.petadoption.ui.theme.PetAdoptionTheme
 
 @Composable
 fun PetApp(
@@ -72,5 +75,16 @@ fun ListScreen(
             )
          }
       }
+   }
+}
+
+@Preview
+@Composable
+fun PreviewListScreen() {
+   PetAdoptionTheme {
+      ListScreen(
+         petList = PetDataSource().loadPets(),
+         onImageClick = { }
+      )
    }
 }

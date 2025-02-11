@@ -8,6 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.zybooks.petadoption.ui.PetApp
+import com.zybooks.petadoption.ui.PreviewListScreen
 import com.zybooks.petadoption.ui.theme.PetAdoptionTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,7 +20,8 @@ class MainActivity : ComponentActivity() {
                modifier = Modifier.fillMaxSize(),
                color = MaterialTheme.colorScheme.background
             ) {
-               PetApp()
+//               PetApp()
+               PreviewListScreen()
             }
          }
       }
