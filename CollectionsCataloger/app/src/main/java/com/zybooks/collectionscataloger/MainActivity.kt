@@ -24,33 +24,8 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             CollectionsCatalogerTheme {
-//                val items = viewModel.items.collectAsState(initial = emptyList())
                 CatalogApp(itemRepo = itemRepo)
-//                )
-
-//                AddItemScreen(onSaveItem = { newItem ->
-//                    Log.d("MainActivity", "onSaveItem called with: $newItem")
-//                    viewModel.onItemEvent(ItemEvent.SaveItem)
-//                })
-
-//                Text(itemDao.getItems().toString())
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    CollectionsCatalogerTheme {
-        Greeting("Android")
     }
 }

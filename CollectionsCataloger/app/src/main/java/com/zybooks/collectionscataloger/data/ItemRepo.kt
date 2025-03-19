@@ -36,6 +36,4 @@ class ItemRepo(context: Context) {
          itemDao.deleteItem(item)
       }
    }
-
-   fun searchItems(query: String): Flow<List<Item>> = itemDao.searchItems(query)
 }

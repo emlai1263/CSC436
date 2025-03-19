@@ -136,7 +136,7 @@ fun CatalogApp(
                 modifier = Modifier.fillMaxSize(),
                 topBar = {
                     TopAppBar(
-                        title = { Text("details") },
+                        title = { Text("Details") },
                         navigationIcon = {
                             IconButton(onClick = { navController.navigateUp() }) {
                                 Icon(

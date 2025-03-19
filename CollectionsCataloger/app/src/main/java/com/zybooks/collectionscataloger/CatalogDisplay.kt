@@ -29,14 +29,13 @@ fun CatalogDisplay(
     var searchQuery by remember { mutableStateOf("") }
     val focusManager = LocalFocusManager.current
 
-    // Filter items based on the search query
     val filteredItems = items.filter { item ->
         item.title.contains(searchQuery, ignoreCase = true) ||
                 item.tags.contains(searchQuery, ignoreCase = true)
     }
 
     Column(modifier = modifier.padding(16.dp)) {
-        // Search bar
+        // search bar
         OutlinedTextField(
             value = searchQuery,
             onValueChange = { newQuery ->
@@ -51,7 +50,6 @@ fun CatalogDisplay(
                 .padding(bottom = 16.dp)
         )
 
-        // Display the filtered items
         LazyVerticalGrid(
             columns = GridCells.Adaptive(150.dp), // Adjust column width as needed
             modifier = Modifier.fillMaxSize()

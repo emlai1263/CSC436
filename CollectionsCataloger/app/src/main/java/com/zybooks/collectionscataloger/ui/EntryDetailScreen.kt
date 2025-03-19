@@ -22,15 +22,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.zybooks.collectionscataloger.R
+import com.google.accompanist.flowlayout.FlowRow
+import com.google.accompanist.flowlayout.MainAxisAlignment
+import com.google.accompanist.flowlayout.SizeMode
 
 @Composable
 fun EntryDetailScreen(
-    imgId: String, // Resource ID for the image (can be replaced with a URI for dynamic images)
+    imgId: String,
     title: String,
     tags: List<String>,
     modifier: Modifier = Modifier
 ) {
-    // Get the screen width
     val screenWidth = LocalConfiguration.current.screenWidthDp.dp
 
     Column(
@@ -48,7 +50,7 @@ fun EntryDetailScreen(
                     error(R.drawable.ic_launcher_background) // Error image if loading fails
                 }
             ),
-            contentDescription = title, // Accessibility description
+            contentDescription = title,
             modifier = Modifier
                 .fillMaxWidth()
                 .height(screenWidth) // Make the height equal to the screen width
@@ -58,7 +60,6 @@ fun EntryDetailScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Display the title
         Text(
             text = title,
             style = MaterialTheme.typography.headlineSmall,
@@ -66,16 +67,18 @@ fun EntryDetailScreen(
             modifier = Modifier.padding(bottom = 8.dp)
         )
 
-        // Display the tags
         TagsRow(tags)
     }
 }
 
 @Composable
 fun TagsRow(tags: List<String>) {
-    Row(
+    FlowRow(
         modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.Start
+        mainAxisSpacing = 4.dp, // Small horizontal spacing between tags
+        crossAxisSpacing = 4.dp, // Small vertical spacing between tags
+        mainAxisAlignment = MainAxisAlignment.Start,
+        mainAxisSize = SizeMode.Expand
     ) {
         tags.forEach { tag ->
             Text(
@@ -83,7 +86,6 @@ fun TagsRow(tags: List<String>) {
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier
-                    .padding(end = 8.dp)
                     .clip(RoundedCornerShape(16.dp))
                     .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.1f))
                     .padding(horizontal = 8.dp, vertical = 4.dp)

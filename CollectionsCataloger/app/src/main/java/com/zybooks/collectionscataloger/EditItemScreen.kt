@@ -42,11 +42,11 @@ fun EditItemScreen(
     val coroutineScope = rememberCoroutineScope()
     val context = LocalContext.current
 
-    // Create a temporary file in the external storage directory
+    // Create a temporary file in the external storage directory (reused for subsequent photos)
     val tempFile = remember {
         File(
             context.getExternalFilesDir(Environment.DIRECTORY_PICTURES), // Use external storage
-            "temp_image_${System.currentTimeMillis()}.jpg" // Unique file name
+            "temp_photo.jpg" // Fixed file name to overwrite the same file
         )
     }
 
@@ -64,7 +64,7 @@ fun EditItemScreen(
         contract = ActivityResultContracts.TakePicture()
     ) { success ->
         if (success) {
-            // Photo was taken successfully
+            // Photo was taken successfully, update the image URI
             imgUri = tempFileUri
         }
     }
@@ -74,10 +74,8 @@ fun EditItemScreen(
         contract = ActivityResultContracts.RequestPermission()
     ) { isGranted ->
         if (isGranted) {
-            // Permission granted, launch the camera
             cameraLauncher.launch(tempFileUri)
         } else {
-            // Permission denied, log a message
             Log.d("EditItemScreen", "Camera permission denied")
         }
     }

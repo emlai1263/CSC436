@@ -68,4 +68,5 @@ dependencies {
     implementation("androidx.room:room-ktx:2.6.1")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
     implementation("io.coil-kt:coil-compose:2.4.0")
+    implementation ("com.google.accompanist:accompanist-flowlayout:0.28.0")
 }

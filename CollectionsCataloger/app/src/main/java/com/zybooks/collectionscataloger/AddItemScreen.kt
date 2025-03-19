@@ -46,7 +46,7 @@ fun AddItemScreen(
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
 
-    // Create a file for the photo
+    // create a file for the photo
     val photoFile by remember {
         mutableStateOf(
             File.createTempFile(
@@ -57,7 +57,7 @@ fun AddItemScreen(
         )
     }
 
-    // Create a URI for the photo file
+    // create a URI for the photo file
     val photoUriForCamera = remember {
         FileProvider.getUriForFile(
             context,
@@ -66,25 +66,22 @@ fun AddItemScreen(
         )
     }
 
-    // Launcher for the camera app
+    // launcher for the camera app
     val cameraLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.TakePicture()
     ) { success ->
         if (success) {
-            // Photo was taken successfully
             imgUri = photoUriForCamera
         }
     }
 
-    // Launcher for requesting camera permission
+    // launcher for requesting camera permission
     val permissionLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestPermission()
     ) { isGranted ->
         if (isGranted) {
-            // Permission granted, launch the camera
             cameraLauncher.launch(photoUriForCamera)
         } else {
-            // Permission denied, show a message or handle it
             Log.d("AddItemScreen", "Camera permission denied")
         }
     }
@@ -112,12 +109,12 @@ fun AddItemScreen(
 
         Button(
             onClick = {
-                // Check if the camera permission is granted
+                // check camera permission
                 if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
                     // Permission already granted, launch the camera
                     cameraLauncher.launch(photoUriForCamera)
                 } else {
-                    // Request the camera permission
+                    // request camera permission
                     permissionLauncher.launch(Manifest.permission.CAMERA)
                 }
             },
@@ -126,7 +123,7 @@ fun AddItemScreen(
             Text("Take Photo")
         }
 
-        // Display the captured photo
+        // display the captured photo
         imgUri?.let { uri ->
             Image(
                 painter = rememberImagePainter(uri),
