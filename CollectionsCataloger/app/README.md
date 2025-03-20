@@ -1,0 +1,20 @@
+- A brief (one paragraph description) of what your project does.
+  - My project is meant to be used to track a collection (for my use case, it was stickers), and allow for easy lookup later. It includes a simple layout/functionality that allows the user to add, edit, and delete item "entries", consisting of an img, title, and a list of tags that a certain item may have. Adding this list of tags allows the user to easily look up items with similar attrbiutes. 
+- Your Figma design (either PNGs exported from Figma or a link to your Figma project)
+  - https://www.figma.com/design/GgUAE465ps2XwuzuNIciwf/CSC436-Design?node-id=0-1&t=iZABqEjPO8zTDSUB-1
+  - I didn't get to add the UI elements/theming, but I might consider trying to add that later on!
+- A list of the Android and Jetpack Compose features which make your app possible. Be sure to include any 3rd party libraries or features which you had to figure out for yourself.
+  - Jetpack Compose UI (ex: LazyVerticalGrid, layout, Card, other UI components)
+  - navigation components
+  - Room: database
+  - Kotlin Serialization
+  - Coroutines
+  - 3rd party libraries
+    - Coil: for images loading/storing
+    - Coroutines: asynchronous coroutines
+- Any dependencies on device features or Android SDK version numbers that somebody wanting to run your app should know.
+  - Minimum SDK: 24
+  - Target SDK: 35
+  - Compile SDK: 35
+  - Camera: to take pictures
+  - External storage: to save pictures
