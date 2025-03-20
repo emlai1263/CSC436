@@ -32,7 +32,7 @@ import java.io.File
 fun EditItemScreen(
     itemId: Int,
     itemRepo: ItemRepo,
-    onSave: () -> Unit, // Callback to trigger after saving
+    onSave: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     // State to hold the edited title, tags, and image URI
@@ -42,11 +42,12 @@ fun EditItemScreen(
     val coroutineScope = rememberCoroutineScope()
     val context = LocalContext.current
 
-    // Create a temporary file in the external storage directory (reused for subsequent photos)
+    // temp file
+    // temp file
     val tempFile = remember {
         File(
-            context.getExternalFilesDir(Environment.DIRECTORY_PICTURES), // Use external storage
-            "temp_photo.jpg" // Fixed file name to overwrite the same file
+            context.getExternalFilesDir(Environment.DIRECTORY_PICTURES),
+            "temp_photo.jpg"
         )
     }
 
@@ -64,7 +65,6 @@ fun EditItemScreen(
         contract = ActivityResultContracts.TakePicture()
     ) { success ->
         if (success) {
-            // Photo was taken successfully, update the image URI
             imgUri = tempFileUri
         }
     }
@@ -86,12 +86,11 @@ fun EditItemScreen(
         if (item != null) {
             title = item.title
             tags = item.tags
-            imgUri = Uri.parse(item.imgId) // Parse the existing image URI
+            imgUri = Uri.parse(item.imgId)
         }
     }
 
     Column(modifier = modifier.padding(16.dp)) {
-        // Display the current image or a placeholder
         Image(
             painter = if (imgUri != null) {
                 rememberImagePainter(data = imgUri)
@@ -111,12 +110,10 @@ fun EditItemScreen(
         // Button to take a new photo
         Button(
             onClick = {
-                // Check if the camera permission is granted
+                // camera perms
                 if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-                    // Permission already granted, launch the camera
                     cameraLauncher.launch(tempFileUri)
                 } else {
-                    // Request the camera permission
                     permissionLauncher.launch(Manifest.permission.CAMERA)
                 }
             },
@@ -150,18 +147,17 @@ fun EditItemScreen(
         // Save button
         Button(
             onClick = {
-                // Save the edited item
                 val updatedItem = Item(
                     id = itemId,
                     title = title,
                     tags = tags,
-                    imgId = imgUri?.toString() ?: R.drawable.ic_launcher_background.toString() // Use the new image URI or fallback to the default
+                    imgId = imgUri?.toString() ?: R.drawable.ic_launcher_background.toString()
                 )
                 Log.d("EditItemScreen", "Updated item: $updatedItem")
-                // Update the item in the repository
+                // update item
                 coroutineScope.launch {
                     itemRepo.updateItem(updatedItem)
-                    onSave() // Navigate back after saving
+                    onSave() // go back after saving
                 }
             },
             modifier = Modifier.fillMaxWidth()

@@ -2,9 +2,7 @@ package com.zybooks.collectionscataloger.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -17,7 +15,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
@@ -40,22 +37,21 @@ fun EntryDetailScreen(
             .padding(16.dp)
             .fillMaxWidth()
     ) {
-        // Display the image as a square with the same width as the screen
         Image(
             painter = rememberImagePainter(
-                data = imgId, // URI or URL of the image
+                data = imgId, // img uri
                 builder = {
                     crossfade(true)
-                    placeholder(R.drawable.ic_launcher_background) // Placeholder while loading
-                    error(R.drawable.ic_launcher_background) // Error image if loading fails
+                    placeholder(R.drawable.ic_launcher_background) // placeholder while loading
+                    error(R.drawable.ic_launcher_background) // backup img
                 }
             ),
             contentDescription = title,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(screenWidth) // Make the height equal to the screen width
-                .clip(RoundedCornerShape(8.dp)), // Rounded corners for the image
-            contentScale = ContentScale.Crop // Crop the image to fit the container
+                .height(screenWidth)
+                .clip(RoundedCornerShape(8.dp)),
+            contentScale = ContentScale.Crop
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -75,8 +71,8 @@ fun EntryDetailScreen(
 fun TagsRow(tags: List<String>) {
     FlowRow(
         modifier = Modifier.fillMaxWidth(),
-        mainAxisSpacing = 4.dp, // Small horizontal spacing between tags
-        crossAxisSpacing = 4.dp, // Small vertical spacing between tags
+        mainAxisSpacing = 4.dp,
+        crossAxisSpacing = 4.dp,
         mainAxisAlignment = MainAxisAlignment.Start,
         mainAxisSize = SizeMode.Expand
     ) {

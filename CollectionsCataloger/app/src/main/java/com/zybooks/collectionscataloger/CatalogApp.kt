@@ -52,7 +52,6 @@ sealed class Routes {
 @Composable
 fun CatalogApp(
     itemRepo: ItemRepo,
-//    modifier: Modifier = Modifier
 ) {
     val items by itemRepo.getItems().collectAsState(initial = emptyList())
 
@@ -223,14 +222,12 @@ fun CatalogApp(
                     itemId = itemId,
                     itemRepo = itemRepo,
                     onSave = {
-                        // Navigate back to the details screen after saving
                         navController.navigateUp()
                     },
                     modifier = Modifier.padding(innerPadding)
                 )
             }
         }
-
     }
 }
 

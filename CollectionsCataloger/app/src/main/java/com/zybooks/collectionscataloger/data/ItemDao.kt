@@ -25,6 +25,8 @@ interface ItemDao {
     @Delete
     suspend fun deleteItem(item: Item)
 
+//    ----- unused below --------
+
     @Query("SELECT * FROM item ORDER BY title ASC")
     fun orderByTitle(): Flow<List<Item>>
 

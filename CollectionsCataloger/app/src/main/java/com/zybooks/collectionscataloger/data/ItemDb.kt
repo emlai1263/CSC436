@@ -10,10 +10,11 @@ import androidx.room.Room
     version = 2
 )
 
+// initializing db only once
 abstract class ItemDb: RoomDatabase() {
     abstract val itemDao: ItemDao
 
-    companion object {
+    companion object { // allows calling getDatabase w/o instantiating an ItemDb
         @Volatile
         private var INSTANCE: ItemDb? = null
 

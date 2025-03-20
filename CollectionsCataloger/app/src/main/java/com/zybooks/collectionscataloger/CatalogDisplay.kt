@@ -51,10 +51,10 @@ fun CatalogDisplay(
         )
 
         LazyVerticalGrid(
-            columns = GridCells.Adaptive(150.dp), // Adjust column width as needed
+            columns = GridCells.Adaptive(150.dp),
             modifier = Modifier.fillMaxSize()
         ) {
-            items(filteredItems) { item -> // Use the items function to iterate over the list
+            items(filteredItems) { item ->
                 Card(
                     modifier = Modifier
                         .padding(8.dp)
@@ -81,7 +81,6 @@ fun CatalogDisplay(
 
                         Spacer(modifier = Modifier.height(8.dp))
 
-                        // Display the title
                         Text(
                             text = item.title,
                             modifier = Modifier
